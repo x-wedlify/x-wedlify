@@ -1,1 +1,1143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undangan Pernikahan</title>
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* =====================================================
+   ROOT & RESET
+===================================================== */
+:root {
+  /* PRIMARY COLORS */
+  --primary: #5E7C6A;        /* sage green */
+  --secondary: #F3F6F4;      /* soft ivory green */
+  --card: #FFFFFF;
+
+  /* TEXT */
+  --dark: #2E3A34;
+
+  /* LINE / ACCENT */
+  --line: rgba(94,124,106,.35);
+
+  /* GOLD ACCENT (sparkle & button) */
+  --gold-1: #C9A86A;
+  --gold-2: #E6CFA3;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =====================================================
+   BASE
+===================================================== */
+body {
+  font-family: 'Inter', sans-serif;
+  background:
+    linear-gradient(#F6F1EB, #F6F1EB),
+    url("grain.png");
+  color: var(--dark);
+  line-height: 1.6;
+  animation: pageFade .8s ease forwards;
+}
+
+@keyframes pageFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+body.lock-scroll {
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  position: relative;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 16px;
+}
+
+h1 { font-size: 40px; }
+h2 { font-size: 28px; }
+
+p {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+/* =====================================================
+   BUTTON
+===================================================== */
+.btn {
+  display: inline-block;
+  padding: 12px 26px;
+  background: linear-gradient(135deg, var(--gold-1), var(--gold-2));
+  color: #fff;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  filter: brightness(1.05);
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(201,168,106,.6); }
+  70% { box-shadow: 0 0 0 14px rgba(201,168,106,0); }
+  100% { box-shadow: 0 0 0 0 rgba(201,168,106,0); }
+}
+
+/* =====================================================
+   HERO / COVER
+===================================================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--primary);
+  position: relative;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(20,20,20,.25),
+      rgba(20,20,20,.75)
+    ),
+    radial-gradient(
+      circle at center,
+      rgba(255,255,255,.12),
+      rgba(0,0,0,.6)
+    ),
+    url("../../assets/img/cover.jpg") center / cover no-repeat;
+}
+
+.hero .container {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.hero p {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 12px;
+  opacity: .85;
+}
+
+.hero h1 {
+  margin: 24px 0;
+  line-height: 1.3;
+}
+
+/* BAGIAN ATAS */
+.hero-main {
+  margin-top: 60px;
+}
+
+.hero-sub {
+  letter-spacing: 3px;
+  font-size: 12px;
+  opacity: .85;
+}
+
+.hero-date {
+  font-size: 13px;
+  letter-spacing: 1px;
+  opacity: .9;
+}
+
+/* BAGIAN BAWAH (TAMU + TOMBOL) */
+.hero-guest {
+  margin-bottom: 80px;
+}
+
+.hero-guest p {
+  font-size: 13px;
+  opacity: .9;
+}
+
+.hero-guest h2 {
+  margin: 10px 0 24px;
+}
+
+.hero-btn {
+  animation: pulse 2s infinite;
+}
+
+/* ANIMASI TOMBOL */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(162,124,85,.6); }
+  70% { box-shadow: 0 0 0 14px rgba(162,124,85,0); }
+  100% { box-shadow: 0 0 0 0 rgba(162,124,85,0); }
+}
+
+/* =====================================================
+   SECTION GLOBAL + DIVIDER PREMIUM
+===================================================== */
+section {
+  position: relative;
+  padding: 110px 20px;
+  text-align: center;
+}
+
+section:nth-of-type(even) { background: var(--secondary); }
+section:nth-of-type(odd)  { background: #fff; }
+
+section h2 {
+  margin-bottom: 24px;
+}
+
+section p {
+  max-width: 520px;
+  margin: 0 auto 12px;
+  opacity: .9;
+}
+
+section:not(.hero)::before {
+  content: "";
+  position: absolute;
+  top: 42px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 68%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--line),
+    transparent
+  );
+}
+
+section:not(.hero)::after {
+  content: "";
+  position: absolute;
+  top: 38px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  opacity: .45;
+}
+
+.hero::before,
+.hero::after {
+  display: none;
+}
+
+/* =====================================================
+   COUPLE
+===================================================== */
+.couple {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  max-width: 700px;
+  margin: 60px auto 0;
+}
+
+.couple p {
+  font-size: 14px;
+  opacity: .85;
+}
+
+/* =====================================================
+   EVENT BOX
+===================================================== */
+.event-box {
+  background: var(--card);
+  padding: 36px;
+  border-radius: 16px;
+  border: 1px solid rgba(140,106,74,.15);
+  box-shadow: 0 20px 50px rgba(0,0,0,.08);
+  margin: 32px auto 0;
+  max-width: 480px;
+}
+
+/* =====================================================
+   GALLERY
+===================================================== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 720px;
+  margin: 40px auto 0;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(140,106,74,.2);
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+/* =====================================================
+   COUNTDOWN
+===================================================== */
+.countdown-box {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 50px;
+}
+
+.countdown-box div {
+  background: linear-gradient(180deg, #fff, #f9f5f0);
+  padding: 20px 16px;
+  border-radius: 16px;
+  min-width: 80px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+}
+
+.countdown-box span {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  color: var(--primary);
+  animation: numberPulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes numberPulse {
+  from { transform: translateY(0); }
+  to { transform: translateY(-6px); }
+}
+
+/* =====================================================
+   GIFT
+===================================================== */
+.gift-box {
+  background: var(--card);
+  padding: 36px;
+  border-radius: 20px;
+  border: 1px solid rgba(140,106,74,.15);
+  max-width: 420px;
+  margin: 40px auto 0;
+  box-shadow: 0 20px 50px rgba(0,0,0,.08);
+}
+
+#rekening {
+  font-size: 20px;
+  letter-spacing: 2px;
+  margin: 12px 0;
+  color: var(--primary);
+}
+
+/* =====================================================
+   RSVP
+===================================================== */
+form {
+  max-width: 360px;
+  margin: auto;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.rsvp-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.rsvp-btn {
+  flex: 1;
+  opacity: .5;
+}
+
+.rsvp-btn.active {
+  opacity: 1;
+}
+
+.rsvp-btn.outline {
+  background: transparent !important;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+footer {
+  padding: 40px 20px;
+  background: #F4EFEA;
+  font-size: 13px;
+}
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero .container > * {
+  animation: fadeUp 1.2s ease forwards;
+  opacity: 0;
+}
+
+.hero p { animation-delay: .2s; }
+.hero h1 { animation-delay: .4s; }
+.hero h2 { animation-delay: .6s; }
+.hero button { animation-delay: .8s; }
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+@media (max-width: 768px) {
+  h1 { font-size: 34px; }
+  h2 { font-size: 24px; }
+
+  .couple {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .hero-main {
+    margin-top: 40px;
+  }
+  
+  .hero-guest {
+    margin-bottom: 60px;
+  }
+  
+  .hero h1 {
+    font-size: 32px;
+    line-height: 1.25;
+  }
+  
+  .hero-btn {
+    width: 75%;
+  }
+}
+
+.preview-header h1 {
+  font-size: 2rem;
+  letter-spacing: .08em;
+  animation: titleReveal 1s ease forwards;
+}
+
+.preview-header p {
+  opacity: 0;
+  animation: fadeUp .8s ease .4s forwards;
+}
+
+@keyframes titleReveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    letter-spacing: .2em;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: .08em;
+  }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.theme-card {
+  opacity: 0;
+  transform: translateY(30px) scale(.96);
+  animation: cardIn .8s ease forwards;
+}
+
+.theme-card:nth-child(1){ animation-delay:.1s }
+.theme-card:nth-child(2){ animation-delay:.2s }
+.theme-card:nth-child(3){ animation-delay:.3s }
+.theme-card:nth-child(4){ animation-delay:.4s }
+.theme-card:nth-child(5){ animation-delay:.5s }
+
+@keyframes cardIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.theme-card h3 {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-card h3::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(201,168,106,.6),
+    transparent
+  );
+  transform: translateX(-100%);
+}
+
+.theme-card:hover h3::after {
+  animation: shimmer 1.2s ease;
+}
+
+@keyframes shimmer {
+  to { transform: translateX(100%); }
+}
+
+.filter button {
+  position: relative;
+  transition: color .3s;
+}
+
+.filter button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg,#c9a86a,#e6cfa3);
+  transition: .4s;
+}
+
+.filter button.active::after,
+.filter button:hover::after {
+  width: 100%;
+}
+
+/* =====================================================
+   SCROLL REVEAL PREMIUM
+===================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(60px) scale(.98);
+  transition: all 1.1s cubic-bezier(.2,.7,.2,1);
+}
+
+/* FONT REVEAL */
+.reveal.text {
+  transform: translateY(30px);
+}
+
+.reveal.text.active {
+  animation: textReveal 1s ease forwards;
+}
+
+@keyframes textReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    letter-spacing: .15em;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: normal;
+  }
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* VARIASI */
+.reveal.fade-left {
+  transform: translateX(-60px);
+}
+
+.reveal.fade-right {
+  transform: translateX(60px);
+}
+
+.reveal.zoom {
+  transform: scale(.9);
+}
+
+.hero {
+  animation: heroZoom 12s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+  from {
+    background-position: center;
+    background-size: 100%;
+  }
+  to {
+    background-position: center;
+    background-size: 108%;
+  }
+}
+
+section:not(.hero)::after {
+  animation: dividerPulse 3s ease-in-out infinite;
+}
+
+@keyframes dividerPulse {
+  0%,100% { transform: translateX(-50%) scale(1); opacity:.4; }
+  50% { transform: translateX(-50%) scale(1.6); opacity:.8; }
+}
+
+.event-box,
+.gift-box {
+  transition: all .6s ease;
+}
+
+.event-box:hover,
+.gift-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(0,0,0,.12);
+}
+
+.gallery img {
+  transition: transform 1s ease, box-shadow .6s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 20px 40px rgba(0,0,0,.25);
+}
+
+@keyframes fadeInBody {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* =====================================================
+   PARALLAX FLOWERS & LEAVES
+===================================================== */
+.parallax-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.parallax-layer span {
+  position: absolute;
+  top: -10%;
+  opacity: .7;
+  animation: fall linear infinite;
+}
+
+/* 🌸 FLOWERS */
+.flowers span {
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle, #F6FBEF, #BFD8C2);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(45deg);
+}
+
+/* 🌿 LEAVES */
+.leaves {
+  z-index: 2;
+}
+.leaves span {
+  width: 22px;
+  height: 12px;
+  background: linear-gradient(135deg, #5E7C6A, #9BB8A6);
+  border-radius: 100% 0 100% 0;
+  opacity: .5;
+}
+
+/* GERAK JATUH */
+@keyframes fall {
+  from { transform: translateY(0) rotate(0); }
+  to   { transform: translateY(120vh) rotate(360deg); }
+}
+
+/* POSISI */
+.flowers span:nth-child(1){left:10%;animation-duration:18s;}
+.flowers span:nth-child(2){left:30%;animation-duration:22s;}
+.flowers span:nth-child(3){left:50%;animation-duration:20s;}
+.flowers span:nth-child(4){left:70%;animation-duration:24s;}
+.flowers span:nth-child(5){left:90%;animation-duration:26s;}
+
+.leaves span:nth-child(1){left:15%;animation-duration:30s;}
+.leaves span:nth-child(2){left:40%;animation-duration:34s;}
+.leaves span:nth-child(3){left:65%;animation-duration:32s;}
+.leaves span:nth-child(4){left:85%;animation-duration:36s;}
+
+/* =====================================================
+   SIGNATURE FLORAL CORNER (ORGANIC)
+===================================================== */
+.floral-frame {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+}
+
+/* KIRI ATAS */
+.floral-frame::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  width: 170px;
+  height: 170px;
+  background:
+    conic-gradient(
+      from 180deg,
+      rgba(201,168,106,.35),
+      rgba(255,255,255,.18),
+      rgba(201,168,106,.35)
+    );
+  border-radius: 0 0 100% 0;
+  mask: radial-gradient(circle at 0 0, #000 55%, transparent 72%);
+}
+
+/* KANAN BAWAH */
+.floral-frame::after {
+  content: "";
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  width: 190px;
+  height: 190px;
+  background:
+    conic-gradient(
+      from 0deg,
+      rgba(201,168,106,.35),
+      rgba(255,255,255,.18),
+      rgba(201,168,106,.35)
+    );
+  border-radius: 100% 0 0 0;
+  mask: radial-gradient(circle at 100% 100%, #000 55%, transparent 72%);
+}
+
+.floral-frame span {
+  position: absolute;
+  width: 24px;
+  height: 12px;
+  background: linear-gradient(135deg, #9d7f5f, #e2c6a2);
+  border-radius: 100% 0 100% 0;
+  opacity: .35;
+  filter: blur(.3px);
+}
+
+/* kiri atas */
+.floral-frame span:nth-child(1){
+  top: 70px;
+  left: 65px;
+  transform: rotate(-40deg);
+}
+
+/* kanan bawah */
+.floral-frame span:nth-child(2){
+  bottom: 75px;
+  right: 70px;
+  transform: rotate(140deg);
+}
+
+.floral-frame::before,
+.floral-frame::after {
+  animation: frameFloat 10s ease-in-out infinite alternate;
+}
+
+@keyframes frameFloat {
+  from { transform: translateY(0); }
+  to { transform: translateY(12px); }
+}
+
+/* =====================================================
+   SCROLL SPARKLE
+===================================================== */
+.scroll-sparkle {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.scroll-sparkle span {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #fff6c9, rgba(255,215,128,.4));
+  border-radius: 50%;
+  animation: sparkle 1.6s ease-out forwards;
+}
+
+@keyframes sparkle {
+  from { opacity:1; transform:scale(.5); }
+  to   { opacity:0; transform:scale(1.8); }
+}
+
+</style>
+</head>
+
+<body class="lock-scroll">
+<!-- PARALLAX FLOWERS & LEAVES -->
+<div class="parallax-layer flowers">
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+
+<div class="parallax-layer leaves">
+  <span></span><span></span><span></span><span></span>
+</div>
+
+<!-- FRAME FLORAL -->
+<div class="floral-frame">
+  <span></span>
+  <span></span>
+</div>
+
+<!-- SPARKLE SCROLL -->
+<div class="scroll-sparkle"></div>
+
+  <!-- COVER GATE -->
+  <section class="hero" id="cover">
+    <div class="container">
+      <div class="hero-main">
+        <p class="hero-sub">The Wedding Of</p>
+        <h1>Rizky Pratama<br>&<br>Alya Maharani</h1>
+        <p class="hero-date">Sabtu, 12 Desember 2026</p>
+      </div>
+      
+      <div style="margin:110px 0"></div>
+      
+      <div class="hero-guest">
+        <p>Kepada Yth.</p>
+        <h2 id="guestName">Tamu Undangan</h2>
+      
+        <button class="btn hero-btn" onclick="openInvitation()">
+          Open Invitation
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPENING -->
+  <section id="opening">
+    <div class="container">
+      <h2 class="reveal text">Assalamu’alaikum Wr. Wb.</h2>
+      <p class="reveal text">Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami.</p>
+    </div>
+  </section>
+  
+  <section>
+    <div class="container">
+      <div class="event-box">
+        <p class="reveal text">“Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.”</p>
+        <p class="reveal text">QS. Ar-Rum : 21</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMPELAI -->
+  <section>
+    <div class="container">
+      <h2 class="reveal text">Mempelai</h2>
+      <div class="couple">
+        <div>
+          <h3 class="reveal text">Rizky Pratama</h3>
+          <p class="reveal text">Putra dari</p>
+          <p class="reveal text">Bapak Ahmad Prasetyo</p>
+          <p class="reveal text">&</p>
+          <p class="reveal text">Ibu Siti Nurlela</p>
+        </div>
+        <div>
+          <h3 class="reveal text">Alya Maharani</h3>
+          <p class="reveal text">Putra dari</p>
+          <p class="reveal text">Bapak Hendra Wijaya</p>
+          <p class="reveal text">&</p>
+          <p class="reveal text">Ibu Nur Aisyah</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACARA -->
+  <section>
+    <div class="container">
+      <h2 class="reveal text">Detail Acara</h2>
+
+      <div class="event-box">
+        <h3 class="reveal text">Akad Nikah</h3>
+        <p class="reveal text">Sabtu, 12 Desember 2026</p>
+        <p class="reveal text">Pukul 08.00 WIB</p>
+      </div>
+
+      <div class="event-box">
+        <h3 class="reveal text">Resepsi</h3>
+        <p class="reveal text">Sabtu, 12 Desember 2026</p>
+        <p class="reveal text">Pukul 11.00 WIB</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOKASI -->
+  <section>
+    <div class="container">
+      <h2 class="reveal text">Lokasi</h2>
+      <p class="reveal text">Gedung Harmoni Convention Hall</p>
+      <p class="reveal text">Jl. Jendral Sudirman No. 88,
+    Kec. Setiabudi, Jakarta Selatan, DKI Jakarta</p>
+      <a href="https://www.google.com/maps/search/?api=1&query=Gedung+Harmoni+Convention+Hall+Jakarta" class="btn reveal text">Buka Google Maps</a>
+    </div>
+  </section>
+
+  <!-- GALERI -->
+  <section>
+    <div class="container">
+      <h2 class="reveal text">Galeri</h2>
+      <div class="gallery">
+        <img src="../../assets/img/1.jpg" class="reveal text">
+        <img src="../../assets/img/2.jpg" class="reveal text">
+        <img src="../../assets/img/3.jpg" class="reveal text">
+        <img src="../../assets/img/4.jpg" class="reveal text">
+        <img src="../../assets/img/5.jpg" class="reveal text">
+        <img src="../../assets/img/6.jpg" class="reveal text">
+      </div>
+    </div>
+  </section>
+  
+  <!-- COUNTDOWN -->
+  <section id="countdown">
+    <div class="container">
+      <h2 class="reveal text">Menuju Hari Bahagia</h2>
+  
+      <div class="countdown-box">
+        <div>
+          <span id="days">00</span>
+          <small class="reveal text">Hari</small>
+        </div>
+        <div>
+          <span id="hours">00</span>
+          <small class="reveal text">Jam</small>
+        </div>
+        <div>
+          <span id="minutes">00</span>
+          <small class="reveal text">Menit</small>
+        </div>
+        <div>
+          <span id="seconds">00</span>
+          <small class="reveal text">Detik</small>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- AMPL0P DIGITAL -->
+  <section id="gift">
+    <div class="container">
+      <h2 class="reveal text">Amplop Digital</h2>
+      <p class="reveal text">Doa restu Anda merupakan hadiah terindah bagi kami.  
+      Namun, apabila berkenan memberikan tanda kasih:</p>
+  
+      <div class="gift-box">
+        <p class="reveal text"><strong>Bank BCA</strong></p>
+        <p id="rekening" class="reveal text">1234567890</p>
+        <p class="reveal text">a.n. Rizky Pratama</p>
+  
+        <button class="btn reveal text" onclick="copyRekening()">Salin Nomor Rekening</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section>
+    <div class="container">
+      <h2 class="reveal text">Konfirmasi Kehadiran</h2>
+
+      <form>
+        <input type="text" placeholder="Nama" class="reveal text" required>
+
+        <div class="rsvp-buttons">
+          <button type="button" class="btn rsvp-btn active reveal text"
+            onclick="setRSVP('Hadir', this)">Hadir</button>
+          <button type="button" class="btn rsvp-btn outline reveal text"
+            onclick="setRSVP('Tidak Hadir', this)">Tidak Hadir</button>
+        </div><br>
+
+        <input type="hidden" id="rsvpStatus">
+
+        <textarea rows="3" placeholder="Ucapan & Doa" class="reveal text"></textarea>
+
+        <button type="submit" class="btn reveal text">Kirim</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- PENUTUP -->
+  <section>
+    <div class="container">
+      <p class="reveal text">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</p>
+      <h2 class="reveal text">Terima Kasih</h2>
+    </div>
+  </section>
+  
+  <button id="musicToggle" style="
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    border:none;
+    background:#8b6f4e;
+    color:#fff;
+    padding:12px;
+    border-radius:50%;
+    cursor:pointer;
+    z-index:999;
+  ">
+  🔊
+  </button>
+
+  <footer>
+    <p>© 2026 • Undangan Digital<br>by X-Wedlify<br>WhatsApp 085846005280</p>
+  </footer>
+  
+  <audio id="bgMusic" loop>
+    <source src="../../assets/music/music.mp3" type="audio/mpeg">
+  </audio>
+
+<!-- SCRIPT FIX -->
+<script>
+let scrollPos = 0;
+
+const params = new URLSearchParams(window.location.search);
+const guest = params.get('to');
+if (guest) {
+  document.getElementById('guestName').innerText =
+    decodeURIComponent(guest.replace(/\+/g, ' '));
+}
+
+const music = document.getElementById("bgMusic");
+const toggleBtn = document.getElementById("musicToggle");
+
+music.addEventListener("timeupdate", () => {
+  if (Math.floor(music.currentTime * 2) % 4 === 0) {
+    const s = document.createElement("span");
+    s.style.left = Math.random()*100 + "%";
+    s.style.top  = Math.random()*100 + "%";
+    document.querySelector(".scroll-sparkle").appendChild(s);
+    setTimeout(()=>s.remove(),1200);
+  }
+});
+
+function openInvitation() {
+  scrollPos = window.scrollY;
+  document.body.classList.remove('lock-scroll');
+  document.body.style.top = '';
+  window.scrollTo(0, scrollPos);
+
+  music.play().catch(()=>{});
+  document.getElementById('opening').scrollIntoView({ behavior: 'smooth' });
+  document.body.style.animation = "fadeInBody 1.2s ease";
+}
+
+toggleBtn.addEventListener("click", () => {
+  if (music.paused) {
+    music.play();
+    toggleBtn.innerText = "🔊";
+  } else {
+    music.pause();
+    toggleBtn.innerText = "🔇";
+  }
+});
+
+/* COUNTDOWN */
+const weddingDate = new Date(2026, 11, 12, 8, 0, 0).getTime();
+setInterval(() => {
+  const now = Date.now();
+  const distance = weddingDate - now;
+  if (distance < 0) return;
+
+  days.innerText = Math.floor(distance / 86400000);
+  hours.innerText = Math.floor(distance % 86400000 / 3600000);
+  minutes.innerText = Math.floor(distance % 3600000 / 60000);
+  seconds.innerText = Math.floor(distance % 60000 / 1000);
+}, 1000);
+
+function copyRekening(){
+  const rekening = document.getElementById("rekening").innerText;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(rekening);
+  }else{
+    const temp=document.createElement("textarea");
+    temp.value=rekening;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand("copy");
+    document.body.removeChild(temp);
+  }
+  alert("Nomor rekening berhasil disalin");
+}
+</script>
+<script>
+const reveals = document.querySelectorAll('.reveal');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('active');
+    }
+  });
+},{ threshold: 0.15 });
+
+reveals.forEach(el => observer.observe(el));
+</script>
+<script>
+/* PARALLAX */
+window.addEventListener("scroll", () => {
+  const y = window.scrollY;
+  document.querySelector(".flowers").style.transform =
+    `translateY(${y * 0.15}px)`;
+  document.querySelector(".leaves").style.transform =
+    `translateY(${y * 0.08}px)`;
+});
+
+/* SPARKLE ON SCROLL */
+let lastSparkle = 0;
+
+window.addEventListener("scroll", () => {
+  const now = Date.now();
+  if (now - lastSparkle < 120) return;
+  lastSparkle = now;
+
+  const sparkle = document.createElement("span");
+  sparkle.style.left = Math.random()*100 + "%";
+  sparkle.style.top  = Math.random()*100 + "%";
+  document.querySelector(".scroll-sparkle").appendChild(sparkle);
+  setTimeout(()=>sparkle.remove(),1200);
+});
+</script>
+</body>
+</html>
