@@ -1,1 +1,454 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Undangan Pernikahan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary: #9FB6A2;      /* sage green */
+  --primary-soft: rgba(159,182,162,.18);
+  --dark: #2E3A34;
+  --bg: #F6F8F5;
+  --light: #FFFFFF;
+  --text: #3F4A44;
+  --text-soft: rgba(63,74,68,.65);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:
+    radial-gradient(circle at top, #ffffff, transparent 55%),
+    var(--bg);
+  color:var(--text);
+}
+body.lock{overflow:hidden;height:100vh}
+
+h1,h2,h3{
+  font-family:'Playfair Display',serif;
+}
+
+section{
+  padding:50px 20px;
+  text-align:center;
+  position:relative;
+}
+
+/* pembatas antar frame */
+section:not(.cover)::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:120px;
+  height:1px;
+  background:linear-gradient(
+    to right,
+    transparent,
+    var(--primary),
+    transparent
+  );
+}
+
+section:not(.cover)::after{
+  content:"❦";
+  position:absolute;
+  top:-14px;
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--bg);
+  color:var(--primary);
+  padding:0 10px;
+  font-size:14px;
+}
+
+.btn{
+  display:inline-block;
+  padding:12px 28px;
+  border-radius:40px;
+  background:var(--primary);
+  color:white;
+  text-decoration:none;
+  border:none;
+  cursor:pointer;
+  font-size:.9rem;
+  box-shadow:0 6px 18px rgba(46,58,52,.18);
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  opacity:.95;
+}
+
+.cover{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    radial-gradient(circle at top, #ffffff, transparent 60%),
+    linear-gradient(to bottom, #ffffff, var(--bg));
+}
+
+.cover-box{
+  text-align:center;
+  padding:30px;
+}
+
+.cover h1{
+  margin:10px 0
+}
+.cover p{
+  font-size:.9rem
+  color:var(--text-soft);
+}
+
+.card{
+  max-width:600px;
+  margin:auto;
+  background:var(--light);
+  box-shadow:0 12px 30px rgba(46,58,52,.08);
+  border:1px solid rgba(159,182,162,.15);
+  padding:28px 22px;
+  border-radius:18px;
+}
+
+.divider{
+  width:60px;
+  height:2px;
+    background:linear-gradient(
+    to right,
+    transparent,
+    var(--primary),
+    transparent
+  );
+  margin:20px auto;
+}
+
+/* ===== FOTO COUPLE ===== */
+.photo-couple{
+  display:flex;
+  gap:16px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.photo-couple img{
+  width:260px;
+  max-width:100%;
+  aspect-ratio:3/4;
+  object-fit:cover;
+  border-radius:16px;
+  border:4px solid #fff;
+  box-shadow:0 12px 28px rgba(46,58,52,.18);
+}
+
+.photo-wrap{
+  display:flex;
+  gap:16px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.photo-wrap img{
+  width:145px;
+  max-width:100%;
+  aspect-ratio:3/4;
+  object-fit:cover;
+  border-radius:14px;
+  border:4px solid #fff;
+  box-shadow:0 12px 28px rgba(46,58,52,.18);
+}
+
+/* ===== AMPlOP DIGITAL ===== */
+.gift-box{
+  background:linear-gradient(
+    to bottom,
+    #ffffff,
+    var(--bg)
+  );
+  border:1px solid rgba(159,182,162,.2);
+  box-shadow:0 12px 26px rgba(46,58,52,.08);
+  border-radius:18px;
+  padding:30px 20px;
+}
+
+.bank{
+  background:#faf7f3;
+  padding:15px;
+  border-radius:14px;
+  margin:15px 0;
+  font-size:.9rem;
+}
+
+.bank b{
+  display:block;
+  font-size:1rem;
+}
+
+.copy-btn{
+  margin-top:8px;
+  padding:8px 16px;
+  border-radius:20px;
+  border:1px solid var(--primary);
+  background:none;
+  cursor:pointer;
+  font-size:.8rem;
+  color:var(--primary);
+}
+
+.copy-btn:hover{
+  background:var(--primary);
+  color:white;
+}
+
+/* ===== RSVP ===== */
+.rsvp-btns{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  margin:20px 0;
+}
+.rsvp-btns button{
+  padding:10px 20px;
+  border-radius:30px;
+  border:1px solid var(--primary);
+  background:none;
+  cursor:pointer;
+  color:var(--primary);
+}
+.rsvp-btns button.active{
+  background:var(--primary);
+  box-shadow:0 6px 16px rgba(46,58,52,.25);
+  color:white;
+}
+
+footer{
+  padding:40px 20px;
+  text-align:center;
+  font-size:.8rem;
+  opacity:.6;
+  color:var(--text-soft);
+}
+</style>
+</head>
+
+<body class="lock">
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-box">
+    <p>The Wedding Of</p>
+    <h1>Alya Maharani<br>&<br>Rizky Pratama</h1>
+    <p>Sabtu, 12 Desember 2026</p>
+    
+    <div style="margin:350px 0"></div>
+    
+    <p>Kepada Yth.</p>
+    <h2 id="guestName">Tamu Undangan</h2>
+    <button class="btn" onclick="openInvite()">Open Invitation</button>
+  </div>
+</section>
+
+<!-- OPENING -->
+<section id="opening">
+  <div class="card">
+    <h2>Assalamu’alaikum</h2>
+    <div class="divider"></div>
+    <p>
+      Maha suci Allah SWT yang telah menciptakan makhluk-Nya berpasang-pasangan.
+      Dengan memohon rahmat dan ridho-Nya, kami bermaksud menyelenggarakan
+      pernikahan putra-putri kami.
+    </p>
+  </div>
+</section>
+
+<!-- MEMPELAI -->
+<section>
+  <div class="card">
+    <h2>Mempelai</h2>
+    <div class="divider"></div>
+    <div class="photo-couple">
+      <img src="../../assets/img/1.jpg" alt="Foto Couple 1">
+    </div>
+    <h3>Alya Maharani</h3>
+    <p>Putri dari Bpk. Hendra Wijaya & Ibu Nur Aisyah</p>
+    <br>
+    <div class="photo-couple">
+      <img src="../../assets/img/2.jpg" alt="Foto Couple 2">
+    </div>
+    <h3>Rizky Pratama</h3>
+    <p>Putra dari Bpk. Ahmad Prasetyo & Ibu Siti Nurlela</p>
+  </div>
+</section>
+
+<!-- FOTO -->
+<section>
+  <div class="card">
+    <h2>Galeri Foto</h2>
+    <div class="divider"></div>
+
+    <div class="photo-wrap">
+      <img src="../../assets/img/3.jpg" alt="Foto Couple 1">
+      <img src="../../assets/img/4.jpg" alt="Foto Couple 2">
+    </div>
+  </div>
+</section>
+
+<!-- ACARA -->
+<section>
+  <div class="card">
+    <h2>Detail Acara</h2>
+    <div class="divider"></div>
+    <p><b>Akad Nikah</b><br>
+    Sabtu, 12 Desember 2026<br>
+    Pukul 08.00 WIB</p>
+    <br>
+    <p><b>Resepsi</b><br>
+    Sabtu, 12 Desember 2026<br>
+    Pukul 11.00 WIB</p>
+  </div>
+</section>
+
+<!-- LOKASI -->
+<section>
+  <div class="card">
+    <h2>Lokasi</h2>
+    <div class="divider"></div>
+    <p>Gedung Harmoni Convention Hall<br>
+    Jl. Jendral Sudirman No. 88,
+    Kec. Setiabudi, Jakarta Selatan, DKI Jakarta</p>
+    <br>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Gedung+Harmoni+Convention+Hall+Jakarta" target="_blank">Buka Google Maps</a>
+  </div>
+</section>
+
+<!-- RSVP -->
+<section>
+  <div class="card">
+    <h2>Konfirmasi Kehadiran</h2>
+    <div class="divider"></div>
+
+    <input id="nama" placeholder="Nama Anda" style="padding:12px;width:100%;max-width:300px">
+
+    <div class="rsvp-btns">
+      <button onclick="setRSVP('Hadir',this)" class="active">Hadir</button>
+      <button onclick="setRSVP('Tidak Hadir',this)">Tidak Hadir</button>
+    </div>
+
+    <textarea id="ucapan" rows="3"
+      placeholder="Ucapan & Doa"
+      style="padding:12px;width:100%;max-width:300px"></textarea>
+    <br><br>
+
+    <button class="btn" onclick="sendWA()">Kirim Kehadiran</button>
+  </div>
+</section>
+
+<!-- AMPL0P DIGITAL -->
+<section>
+  <div class="card">
+    <h2>Amplop Digital</h2>
+    <div class="divider"></div>
+
+    <p>
+      Doa restu Anda merupakan karunia yang sangat berarti bagi kami.
+      Dan jika berkenan memberikan tanda kasih, dapat melalui:
+    </p>
+
+    <div class="gift-box">
+
+      <div class="bank">
+        <b>Bank BCA</b>
+        1234567890<br>
+        a.n. Alya Maharani
+        <br>
+        <button class="copy-btn" onclick="copyRek('1234567890')">
+          Salin Nomor Rekening
+        </button>
+      </div>
+
+      <div class="bank">
+        <b>Bank Mandiri</b>
+        9876543210<br>
+        a.n. Rizky Pratama
+        <br>
+        <button class="copy-btn" onclick="copyRek('9876543210')">
+          Salin Nomor Rekening
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PENUTUP -->
+<section>
+  <div class="card">
+    <p>
+      Merupakan suatu kehormatan dan kebahagiaan bagi kami
+      apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
+    </p>
+    <br>
+    <p>Wassalamu’alaikum</p>
+  </div>
+</section>
+
+<footer>
+  © 2026 • Undangan Digital<br>by X-Wedlify<br>WhatsApp 085846005280
+</footer>
+
+<script>
+/* Nama tamu dari URL */
+const params = new URLSearchParams(location.search);
+const guest = params.get("to");
+if(guest){
+  guestName.innerText = decodeURIComponent(guest.replace(/\+/g," "));
+}
+
+/* Open invite */
+function openInvite(){
+  document.body.classList.remove("lock");
+  document.getElementById("opening")
+    .scrollIntoView({behavior:"smooth"});
+}
+
+/* RSVP */
+let status = "Hadir";
+function setRSVP(val,el){
+  status = val;
+  document.querySelectorAll(".rsvp-btns button")
+    .forEach(b=>b.classList.remove("active"));
+  el.classList.add("active");
+}
+
+function sendWA(){
+  const text = `
+Nama: ${nama.value}
+Kehadiran: ${status}
+Ucapan: ${ucapan.value}
+
+Link:
+${location.href}
+  `;
+  window.open(
+    "https://wa.me/6285846005280?text="+
+    encodeURIComponent(text)
+  );
+}
+
+/* Copy Rekening */
+function copyRek(no){
+  navigator.clipboard.writeText(no);
+  alert("Nomor rekening berhasil disalin");
+}
+</script>
+
+</body>
+</html>
