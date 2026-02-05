@@ -1,1 +1,690 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undangan Pernikahan</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#0f766e;        /* Emerald */
+  --primary-soft:#5eead4;   /* Emerald soft */
+  --gold:#d6b36a;           /* Champagne gold */
+  --secondary:#f8f9f7;
+  --dark:#0f172a;
+  --glass:rgba(255,255,255,.65);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:
+    radial-gradient(circle at top, #ecfeff, #f8fafc 60%);
+  color:var(--dark);
+  line-height:1.75;
+}
+
+body.lock{overflow:hidden;height:100vh}
+
+section{
+  padding:90px 20px;
+  text-align:center;
+}
+
+.container{max-width:900px;margin:auto}
+
+h1,h2,h3{
+  font-family:'Playfair Display',serif;
+  margin-bottom:16px;
+}
+
+h1{font-size:42px}
+h2{font-size:30px}
+
+p{font-size:15px;opacity:.9}
+
+.btn{
+  padding:14px 34px;
+  background:linear-gradient(
+    135deg,
+    var(--primary),
+    #115e59
+  );
+  color:#fff;
+  border:none;
+  border-radius:50px;
+  cursor:pointer;
+  text-decoration:none;
+  font-weight:500;
+  letter-spacing:.5px;
+  box-shadow:0 10px 30px rgba(15,118,110,.45);
+  transition:.35s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 18px 40px rgba(15,118,110,.6);
+}
+
+.card{
+  background:var(--glass);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-radius:22px;
+  padding:34px;
+  box-shadow:
+    0 20px 45px rgba(0,0,0,.08);
+  border:1px solid rgba(255,255,255,.35);
+}
+
+/* COVER */
+.cover{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    linear-gradient(
+      rgba(15,118,110,.65),
+      rgba(2,44,34,.75)
+    ),
+    url("https://images.unsplash.com/photo-1520854221256-17451cc331bf")
+    center/cover no-repeat;
+  color:#fff;
+  text-shadow:0 8px 30px rgba(0,0,0,.45);
+}
+
+.cover h1{
+  letter-spacing:2px;
+  position:relative;
+}
+
+.cover h1::after{
+  content:"";
+  display:block;
+  width:90px;
+  height:1px;
+  background:linear-gradient(
+    to right,
+    transparent,
+    var(--gold),
+    transparent
+  );
+  margin:20px auto;
+}
+
+/* COUPLE */
+.couple{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:40px;
+}
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.gallery img{width:100%;border-radius:14px}
+
+/* ===== AMPL0P DIGITAL PREMIUM ===== */
+.gift-wrapper{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+  max-width:500px;
+  margin:40px auto 30px;
+}
+
+.gift-card{
+  background:var(--glass);
+  backdrop-filter:blur(10px);
+  padding:30px;
+  border-radius:22px;
+  cursor:pointer;
+  box-shadow:0 20px 40px rgba(0,0,0,.08);
+  opacity:.55;
+  transition:.4s;
+  border:1px solid rgba(255,255,255,.4);
+}
+
+.gift-card.active{
+  opacity:1;
+  border:1px solid var(--gold);
+  box-shadow:0 25px 50px rgba(214,179,106,.35);
+}
+
+.gift-card h3{
+  color:var(--primary);
+  letter-spacing:3px;
+}
+
+/* RSVP */
+form{max-width:420px;margin:auto}
+input,textarea{
+  width:100%;
+  padding:13px;
+  border-radius:10px;
+  border:1px solid #ddd;
+  margin-bottom:14px;
+}
+
+.rsvp-btns{display:flex;gap:14px;margin-bottom:16px}
+.rsvp-btn{flex:1;opacity:.5}
+.rsvp-btn.active{opacity:1}
+.outline{background:transparent;color:var(--primary);border:1px solid var(--primary)}
+
+/* ===== COUNTDOWN COMPACT PREMIUM ===== */
+.countdown{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:28px;
+}
+
+.time{
+  background:rgba(255,255,255,.65);
+  box-shadow:0 8px 20px rgba(0,0,0,.06);
+  backdrop-filter:blur(10px);
+  border-radius:14px;
+  padding:10px 6px 10px;
+  border:1px solid rgba(214,179,106,.28);
+}
+
+/* accent tipis */
+.time::before{
+  content:"";
+  display:none; /* matikan supaya makin compact */
+}
+
+.time h3{
+  font-size:24px;
+  font-family:'Playfair Display',serif;
+  color:var(--primary);
+  margin:2px 0 0;
+  line-height:1.2;
+}
+
+.time p{
+  font-size:9px;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  opacity:.55;
+  margin-top:2px;
+}
+
+/* MOBILE SUPER COMPACT */
+@media(max-width:480px){
+  .countdown{
+    gap:8px;
+  }
+
+  .time{
+    padding:9px 4px;
+    border-radius:12px;
+  }
+
+  .time h3{
+    font-size:22px;
+  }
+}
+
+/* COUNTDOWN NUMBER POP */
+/* COUNTDOWN NUMBER POP */
+.bump{
+  animation:pop .28s ease-out;
+}
+
+@keyframes pop{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.18)}
+  100%{transform:scale(1)}
+}
+
+/* FOOTER */
+footer{background:#fff;padding:40px 20px;font-size:13px}
+
+/* ===== MUSIC BUTTON PREMIUM ===== */
+.music-btn{
+  position:fixed;
+  bottom:14px;
+  right:14px;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  border:none;
+  background:linear-gradient(
+    135deg,
+    var(--gold),
+    #b89655
+  );
+  color:#fff;
+  font-size:20px;
+  cursor:pointer;
+  z-index:999;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  transition:.3s;
+}
+
+.music-btn:hover{
+  transform:scale(1.08);
+  opacity:.9;
+}
+
+/* ===== PREMIUM SECTION DIVIDER ===== */
+section{
+  position:relative;
+}
+
+/* garis utama */
+section::before{
+  content:"";
+  position:absolute;
+  top:50px;
+  left:50%;
+  transform:translateX(-50%);
+  width:55%;
+  height:1px;
+  background:linear-gradient(
+    to right,
+    transparent,
+    rgba(214,179,106,.7),
+    transparent
+  );
+}
+
+/* ornament tengah */
+section::after{
+  content:"";
+  position:absolute;
+  top:44px;
+  left:50%;
+  transform:translateX(-50%);
+  width:10px;
+  height:10px;
+  background:var(--gold);
+  border-radius: 50%;
+  box-shadow:
+    -16px 0 0 rgba(214,179,106,.4),
+     16px 0 0 rgba(214,179,106,.4);
+  opacity:.8;
+}
+
+/* COVER TANPA DIVIDER */
+.cover::before,
+.cover::after{
+  display:none;
+}
+
+/* =====================
+   SCROLL ANIMATION CORE
+===================== */
+[data-animate]{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .9s cubic-bezier(.2,.8,.2,1);
+}
+
+[data-animate].show{
+  opacity:1;
+  transform:none;
+}
+
+/* =====================
+   TEXT VARIATION
+===================== */
+[data-animate="title"]{
+  transform:translateY(25px);
+}
+
+[data-animate="text"]{
+  transform:translateY(18px);
+  transition-duration:.8s;
+}
+
+/* =====================
+   CARD PREMIUM
+===================== */
+[data-animate="card"]{
+  transform:translateY(50px) scale(.95);
+}
+
+/* =====================
+   BUTTON
+===================== */
+[data-animate="button"]{
+  transform:translateY(20px);
+}
+
+/* =====================
+   GALLERY
+===================== */
+[data-animate="image"]{
+  transform:scale(1.1);
+  transition-duration:.8s;
+}
+
+/* =====================
+   COUNTDOWN POP
+===================== */
+[data-animate="time"]{
+  transform:translateY(30px);
+}
+
+/* =====================
+   STAGGER DELAY
+===================== */
+.delay-1{transition-delay:.15s}
+.delay-2{transition-delay:.3s}
+.delay-3{transition-delay:.45s}
+.delay-4{transition-delay:.6s}
+.delay-5{transition-delay:.75s}
+</style>
+</head>
+
+<body class="lock">
+
+<audio id="music" loop>
+  <source src="../../assets/music/music.mp3">
+</audio>
+
+<!-- 1. COVER GATE -->
+<section class="cover" data-animate>
+  <div class="container">
+    <p data-animate="text" class="delay-1">The Wedding Of</p>
+    <h1 data-animate="title">Rizky Pratama<br>&<br>Alya Maharani</h1>
+    <p data-animate="text" class="delay-1">Sabtu, 12 Desember 2026</p>
+    <div style="margin:190px 0"></div>
+    <p data-animate="text" class="delay-1">Kepada Yth.</p>
+    <h2 id="guest" data-animate="title">Tamu Undangan</h2>
+    <br>
+    <button class="btn" onclick="openInvite()" data-animate="button">Open Invitation</button>
+  </div>
+</section>
+
+<!-- 2. OPENING -->
+<section id="opening" data-animate>
+  <div class="container">
+    <h2 data-animate="title">Assalamu’alaikum Wr. Wb.</h2>
+    <p data-animate="text" class="delay-1">Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami.</p>
+  </div>
+</section>
+
+<section data-animate>
+  <div class="container">
+    <p data-animate="text" class="delay-1">“Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.”</p>
+    <p data-animate="text" class="delay-1">QS. Ar-Rum : 21</p>
+  </div>
+</section>
+
+<!-- 3. MEMPELAI -->
+<section data-animate>
+  <div class="container">
+    <h2 data-animate="title">Mempelai</h2>
+    <div class="couple">
+      <div class="card" data-animate="card">
+        <h3 data-animate="title">Rizky Pratama</h3>
+        <p data-animate="text" class="delay-1">Putra dari</p>
+        <p data-animate="text" class="delay-1">Bapak Ahmad Prasetyo</p>
+        <p data-animate="text" class="delay-1">&</p>
+        <p data-animate="text" class="delay-1">Ibu Siti Nurlela</p>
+      </div>
+      <div class="card" data-animate="card">
+        <h3 data-animate="title">Alya Maharani</h3>
+        <p data-animate="text" class="delay-1">Putra dari</p>
+        <p data-animate="text" class="delay-1">Bapak Hendra Wijaya</p>
+        <p data-animate="text" class="delay-1">&</p>
+        <p data-animate="text" class="delay-1">Ibu Nur Aisyah</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. COUNTDOWN (STANDARD ADD-ON) -->
+<section data-animate>
+  <div class="container">
+    <h2 data-animate="title">Menuju Hari Bahagia</h2>
+    <div class="countdown" data-animate="card">
+      <div class="time"><h3 id="days" data-animate="time">0</h3><p data-animate="time">Hari</p></div>
+      <div class="time"><h3 id="hours" data-animate="time">0</h3><p data-animate="time">Jam</p></div>
+      <div class="time"><h3 id="minutes" data-animate="time">0</h3><p data-animate="time">Menit</p></div>
+      <div class="time"><h3 id="seconds" data-animate="time">0</h3><p data-animate="time">Detik</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. DETAIL ACARA -->
+<section data-animate>
+  <div class="container">
+    <h2 data-animate="title">Detail Acara</h2>
+    <div class="card" data-animate="card">
+      <h3 data-animate="title">Akad Nikah</h3>
+      <p data-animate="text" class="delay-1">Sabtu, 12 Desember 2026</p>
+      <p data-animate="text" class="delay-1">Pukul 08.00 WIB</p>
+    </div>
+    <br>
+    <div class="card" data-animate="card">
+      <h3 data-animate="title">Resepsi</h3>
+      <p data-animate="text" class="delay-1">Sabtu, 12 Desember 2026</p>
+      <p data-animate="text" class="delay-1">Pukul 11.00 WIB</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6. LOKASI -->
+<section data-animate>
+  <div class="container">
+    <h2 data-animate="title">Lokasi</h2>
+    <p data-animate="text" class="delay-1">Gedung Harmoni Convention Hall</p>
+    <p data-animate="text" class="delay-1">Jl. Jendral Sudirman No. 88,
+    Kec. Setiabudi, Jakarta Selatan, DKI Jakarta</p><br>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Gedung+Harmoni+Convention+Hall+Jakarta" data-animate="button">Buka Google Maps</a>
+  </div>
+</section>
+
+<!-- 7. GALERI -->
+<section data-animate>
+  <div class="container">
+    <h2 data-animate="title">Galeri</h2>
+    <div class="gallery">
+      <img src="../../assets/img/1.jpg" data-animate="image">
+      <img src="../../assets/img/2.jpg" data-animate="image">
+      <img src="../../assets/img/3.jpg" data-animate="image">
+      <img src="../../assets/img/4.jpg" data-animate="image">
+      <img src="../../assets/img/5.jpg" data-animate="image">
+      <img src="../../assets/img/6.jpg" data-animate="image">
+    </div>
+  </div>
+</section>
+
+<!-- 9. AMPL0P DIGITAL -->
+<section id="gift" data-animate>
+  <div class="container">
+    <h2 data-animate="title">Amplop Digital</h2>
+    <p data-animate="text" class="delay-1">Tanpa mengurangi rasa hormat, bagi Bapak/Ibu yang ingin memberikan tanda kasih:</p>
+
+    <div class="gift-wrapper">
+      <div class="gift-card active" onclick="selectBank(this)" data-animate="card">
+        <p><strong>BCA</strong></p>
+        <h3 data-animate="title">1234567890</h3>
+        <small>a.n. Rizky Pratama</small>
+      </div>
+
+      <div class="gift-card" onclick="selectBank(this)" data-animate="card">
+        <p data-animate="text" class="delay-1"><strong>Mandiri</strong></p>
+        <h3 data-animate="title">9876543210</h3>
+        <small>a.n. Alya Maharani</small>
+      </div>
+    </div>
+
+    <button class="btn" onclick="copyGift()" data-animate="button">Salin Nomor Rekening</button>
+  </div>
+</section>
+
+<!-- 8. RSVP -->
+<section data-animate>
+  <div class="container">
+    <h2 data-animate="title">Konfirmasi Kehadiran</h2>
+    <form>
+      <input type="text" placeholder="Nama" data-animate="text" required>
+      <div class="rsvp-btns">
+        <button type="button" class="btn rsvp-btn active"
+          onclick="setRSVP('Hadir',this)" data-animate="button">Hadir</button>
+        <button type="button" class="btn rsvp-btn outline"
+          onclick="setRSVP('Tidak Hadir',this)" data-animate="button">Tidak Hadir</button>
+      </div>
+      <input type="hidden" id="status">
+      <textarea rows="3" placeholder="Ucapan & Doa" data-animate="text"></textarea>
+      <button class="btn" data-animate="button">Kirim</button>
+    </form>
+  </div>
+</section>
+
+<!-- 9. PENUTUP -->
+<section data-animate>
+  <div class="container">
+    <p data-animate="text" class="delay-1">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</p>
+    <h2 data-animate="title">Terima Kasih</h2>
+  </div>
+</section>
+
+<!-- 10. FOOTER -->
+<footer>
+  © 2026 • Undangan Digital<br>by X-Wedlify<br>WhatsApp 085846005280
+</footer>
+
+<!-- MUSIC TOGGLE -->
+<button id="musicBtn" class="music-btn">🔊</button>
+
+<script>
+// =====================
+// NAMA TAMU
+// =====================
+const q = new URLSearchParams(location.search);
+const guest = q.get("to");
+if(guest){
+  document.getElementById("guest").innerText =
+    decodeURIComponent(guest.replace(/\+/g," "));
+}
+
+// =====================
+// MUSIK
+// =====================
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+let isPlaying = false;
+
+// OPEN INVITATION
+function openInvite(){
+  document.body.classList.remove("lock");
+
+  music.play().then(()=>{
+    isPlaying = true;
+    if(musicBtn) musicBtn.innerText = "🔊";
+  }).catch(()=>{});
+
+  document.getElementById("opening")
+    .scrollIntoView({behavior:"smooth"});
+}
+
+// TOGGLE MUSIC
+if(musicBtn){
+  musicBtn.addEventListener("click",()=>{
+    if(isPlaying){
+      music.pause();
+      musicBtn.innerText = "🔇";
+    }else{
+      music.play();
+      musicBtn.innerText = "🔊";
+    }
+    isPlaying = !isPlaying;
+  });
+}
+
+// =====================
+// RSVP
+// =====================
+function setRSVP(v,el){
+  document.getElementById("status").value = v;
+  document.querySelectorAll(".rsvp-btn")
+    .forEach(b=>b.classList.remove("active"));
+  el.classList.add("active");
+}
+
+// =====================
+// COUNTDOWN
+// =====================
+const target = new Date("2026-12-12T08:00:00").getTime();
+const d = document.getElementById("days");
+const h = document.getElementById("hours");
+const m = document.getElementById("minutes");
+const s = document.getElementById("seconds");
+
+setInterval(()=>{
+  const now = new Date().getTime();
+  const diff = target - now;
+  if(diff < 0) return;
+
+  const newD = Math.floor(diff / (1000*60*60*24));
+  const newH = Math.floor((diff / (1000*60*60)) % 24);
+  const newM = Math.floor((diff / (1000*60)) % 60);
+  const newS = Math.floor((diff / 1000) % 60);
+
+  if(d.innerText != newD){ d.innerText = newD; d.classList.add("bump"); }
+  if(h.innerText != newH){ h.innerText = newH; h.classList.add("bump"); }
+  if(m.innerText != newM){ m.innerText = newM; m.classList.add("bump"); }
+  if(s.innerText != newS){ s.innerText = newS; s.classList.add("bump"); }
+
+  setTimeout(()=>{
+    d.classList.remove("bump");
+    h.classList.remove("bump");
+    m.classList.remove("bump");
+    s.classList.remove("bump");
+  },300);
+
+},1000);
+</script>
+<script>
+let selectedGift = "1234567890";
+
+function selectBank(el){
+  document.querySelectorAll(".gift-card")
+    .forEach(c=>c.classList.remove("active"));
+  el.classList.add("active");
+  selectedGift = el.querySelector("h3").innerText;
+}
+
+function copyGift(){
+  navigator.clipboard.writeText(selectedGift);
+  alert("Nomor rekening berhasil disalin");
+}
+</script>
+<script>
+/* =====================
+   SCROLL OBSERVER SYSTEM
+===================== */
+const animated = document.querySelectorAll("[data-animate]");
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }else{
+      entry.target.classList.remove("show"); // repeat animation
+    }
+  });
+},{
+  threshold:0.2
+});
+
+animated.forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
