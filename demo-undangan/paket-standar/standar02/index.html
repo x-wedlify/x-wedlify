@@ -1,1 +1,594 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinematic Pro Wedding Invitation</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<style>
+:root{
+  --accent:#6FA8DC;           /* royal blue */
+  --accent-soft:rgba(111,168,220,.25);
+
+  --dark:#0E1A2B;             /* midnight */
+  --dark-soft:#162742;        /* section gelap */
+
+  --light:#F4F7FB;            /* background utama */
+  --card:#FFFFFF;             /* card premium */
+
+  --line:rgba(111,168,220,.45);
+  --text-muted:rgba(14,26,43,.6);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{scroll-behavior:smooth}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(#F4F7FB,#EDF2F9);
+  color:var(--dark);
+  line-height:1.8;
+}
+
+.scene:nth-of-type(even){
+  background:linear-gradient(
+    to bottom,
+    #EDF2F9,
+    #F4F7FB
+  );
+}
+
+
+body.lock{
+  overflow:hidden;height:100vh
+}
+
+section{
+  min-height:100vh;
+  padding:120px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.container{max-width:1100px;margin:auto}
+
+h1,h2,h3{font-family:'Playfair Display',serif}
+h1{font-size:52px}
+h2{font-size:36px}
+
+.btn{
+  padding:16px 36px;
+  border-radius:40px;
+  border:none;
+  background:linear-gradient(
+    135deg,
+    var(--accent),
+    #4F87B8
+  );
+  box-shadow:0 18px 40px rgba(111,168,220,.35);
+  color:#fff;
+  cursor:pointer;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 25px 60px rgba(111,168,220,.45);
+}
+
+/* ===== COVER ===== */
+.cover{
+  background:
+    linear-gradient(
+      rgba(14,26,43,.7),
+      rgba(14,26,43,.7)
+    ),
+    url("https://picsum.photos/1600/2200") center/cover;
+  color:#fff;
+}
+
+/* ===== CARD ===== */
+.card{
+  background:linear-gradient(#fff,#FAFBFD);
+  border:1px solid rgba(111,168,220,.12);
+  padding:48px;
+  border-radius:26px;
+  box-shadow:
+    0 30px 70px rgba(14,26,43,.12),
+    inset 0 0 0 1px rgba(255,255,255,.6);
+}
+
+/* ===== COUPLE ===== */
+.couple{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:60px;
+}
+
+/* ===== FOTO COUPLE ===== */
+.photo-couple{
+  display:flex;
+  gap:16px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.photo-couple img{
+  width:260px;
+  max-width:100%;
+  aspect-ratio:3/4;
+  object-fit:cover;
+  border-radius:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,.12);
+}
+
+/* ===== COUNTDOWN CINEMATIC ===== */
+.countdown{
+  display:flex;
+  justify-content:center;
+  gap:28px;
+  margin-top:40px;
+}
+
+.time{
+  background:transparent;
+  padding:0;
+  min-width:auto;
+}
+
+.time h3{
+  font-size:34px;
+  font-weight:600;
+  color:var(--accent);
+  text-shadow:0 0 18px rgba(111,168,220,.35);
+  margin-bottom:4px;
+}
+
+.time p{
+  font-size:12px;
+  letter-spacing:2px;
+  opacity:.7;
+  text-transform:uppercase;
+  color:var(--text-muted);
+}
+
+.event{
+  max-width:520px;
+  margin:30px auto;
+  position:relative;
+}
+
+.event::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:50%;
+  width:1px;
+  height:100%;
+  background:rgba(155,122,70,.3);
+}
+
+/* ===== GALLERY (CENTERED & CLEAN) ===== */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:16px;
+  max-width:720px;   /* kunci utama biar gak melebar */
+  margin:40px auto 0;
+  position:relative;
+}
+
+/* tablet */
+@media (max-width: 900px){
+  .gallery{
+    grid-template-columns:repeat(2, 1fr);
+    max-width:520px;
+  }
+}
+
+/* mobile */
+@media (max-width: 480px){
+  .gallery{
+    grid-template-columns:1fr;
+    max-width:320px;
+  }
+}
+
+.gallery img{
+  width:100%;
+  aspect-ratio:3/4;
+  object-fit:cover;
+  border-radius:18px;
+  cursor:pointer;
+  filter:grayscale(.35) brightness(.95);
+  transition:.5s ease;
+}
+
+.gallery img:hover{
+  transform:scale(1.04);
+  filter:grayscale(0) brightness(1);
+  box-shadow:0 20px 50px rgba(14,26,43,.25);
+}
+
+.gallery::before{
+  content:"";
+  position:absolute;
+  top:-24px;
+  left:50%;
+  transform:translateX(-50%);
+  width:60px;
+  height:2px;
+  background:var(--gold);
+  opacity:.4;
+}
+
+/* ===== LIGHTBOX ===== */
+#lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+#lightbox img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:20px;
+}
+
+/* ===== RSVP ===== */
+form{max-width:460px;margin:auto}
+input,textarea{
+  width:100%;
+  padding:15px;
+  border-radius:14px;
+  border:1px solid #ddd;
+  margin-bottom:14px;
+}
+.rsvp-btns{display:flex;gap:14px}
+.rsvp-btn{flex:1;opacity:.5}
+.rsvp-btn.active{opacity:1}
+.outline{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+
+.scene:last-of-type{
+  min-height:80vh;
+}
+
+/* ===== MUSIC ===== */
+.music{
+  position:fixed;
+  right:12px;
+  bottom:12px;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:var(--accent);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 20px 40px rgba(111,168,220,.45);
+  cursor:pointer;
+  z-index:99;
+}
+
+/* ===== SECTION FRAME DIVIDER ===== */
+.scene{
+  position:relative;
+}
+
+/* garis atas & bawah */
+.scene::before,
+.scene::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  width:70%;
+  height:1px;
+  background:linear-gradient(
+    to right,
+    transparent,
+    var(--line),
+    transparent
+  );
+  opacity:.6;
+}
+
+.scene::before{
+  top:40px;
+}
+
+.scene::after{
+  bottom:40px;
+}
+
+/* ornament tengah */
+.scene .frame-dot{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 10px var(--accent-soft);
+  opacity:.5;
+}
+
+/* posisi ornament */
+.scene .frame-top{ top:35px; }
+.scene .frame-bottom{ bottom:35px; }
+
+/* cover tanpa frame */
+.cover::before,
+.cover::after{
+  display:none;
+}
+</style>
+</head>
+
+<body class="lock">
+
+<audio id="music" loop>
+  <source src="../../assets/music/music.mp3">
+</audio>
+
+<div class="music" onclick="toggleMusic()">♫</div>
+
+<!-- 1. COVER -->
+<section class="cover scene">
+  <div class="container">
+    <p class="anim">The Wedding Of</p>
+    <h1 class="anim">Rizky Pratama<br>&<br>Alya Maharani</h1>
+    <p class="anim">Sabtu, 12 Desember 2026</p>
+    <div style="margin:110px 0"></div>
+    <p class="anim">Kepada Yth.</p>
+    <h2 class="anim" id="guest">Tamu Undangan</h2>
+    <br>
+    <button class="btn anim" onclick="openInvite()">Open Invitation</button>
+  </div>
+</section>
+
+<!-- 2. OPENING -->
+<section class="scene">
+  <div class="frame-dot frame-top"></div>
+  <div class="frame-dot frame-bottom"></div>
+  <div class="container">
+    <h2 class="anim">Assalamu’alaikum Wr. Wb.</h2>
+    <p class="anim">Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Anda untuk hadir.</p>
+  </div>
+</section>
+
+<!-- 3. AYAT -->
+<section class="scene">
+  <div class="frame-dot frame-top"></div>
+  <div class="frame-dot frame-bottom"></div>
+  <div class="container card">
+    <p class="anim"><i>“Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.”</i></p>
+    <p class="anim"><strong>QS. Ar-Rum : 21</strong></p>
+  </div>
+</section>
+
+<!-- 4. MEMPELAI -->
+<section class="scene">
+  <div class="frame-dot frame-top"></div>
+  <div class="frame-dot frame-bottom"></div>
+  <div class="container">
+    <h2 class="anim">Mempelai</h2>
+
+    <div class="card anim" style="max-width:600px;margin:40px auto">
+      <div class="photo-couple">
+        <img src="../../assets/img/2.jpg" alt="Foto Couple 2">
+      </div><br>
+      <h3>Rizky Pratama</h3>
+      <p>Putra dari Bpk. Ahmad Prasetyo & Ibu Ibu Siti Nurlela</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="card anim" style="max-width:600px;margin:40px auto">
+      <div class="photo-couple">
+        <img src="../../assets/img/1.jpg" alt="Foto Couple 1">
+      </div><br>
+      <h3>Alya Maharani</h3>
+      <p>Putri dari Bpk. Hendra Wijaya & Ibu Nur Aisyah</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. COUNTDOWN -->
+<section class="scene">
+  <div class="frame-dot frame-top"></div>
+  <div class="frame-dot frame-bottom"></div>
+  <div class="container">
+    <h2 class="anim">Menuju Hari Bahagia</h2>
+    <div class="countdown anim">
+      <div class="time"><h3 id="d">0</h3><p>Hari</p></div>
+      <div class="time"><h3 id="h">0</h3><p>Jam</p></div>
+      <div class="time"><h3 id="m">0</h3><p>Menit</p></div>
+      <div class="time"><h3 id="s">0</h3><p>Detik</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. STORY -->
+<section class="scene">
+  <div class="frame-dot frame-top"></div>
+  <div class="frame-dot frame-bottom"></div>
+  <div class="container card">
+    <h2 class="anim">Our Story</h2>
+    <p class="anim">Perjalanan cinta yang membawa kami ke hari bahagia.</p>
+  </div>
+</section>
+
+<!-- 7. DETAIL ACARA -->
+<section class="scene">
+  <div class="frame-dot frame-top"></div>
+  <div class="frame-dot frame-bottom"></div>
+  <div class="container">
+    <h2 class="anim">Detail Acara</h2>
+
+    <div class="event">
+      <div class="card anim">
+        <h3>Akad Nikah</h3>
+        <p>Sabtu, 12 Desember 2026</p>
+        <p>Pukul 08.00 WIB</p>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="card anim">
+        <h3>Resepsi</h3>
+        <p>Sabtu, 12 Desember 2026</p>
+        <p>Pukul 11.00 WIB</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. LOKASI -->
+<section class="scene">
+  <div class="frame-dot frame-top"></div>
+  <div class="frame-dot frame-bottom"></div>
+  <div class="container">
+    <h2 class="anim">Gedung Harmoni Convention Hall</h2>
+    <p class="anim">Jl. Jendral Sudirman No. 88,
+    Kec. Setiabudi, Jakarta Selatan, DKI Jakarta</p><br>
+    <a class="btn anim" href="https://www.google.com/maps/search/?api=1&query=Gedung+Harmoni+Convention+Hall+Jakarta">Buka Google Maps</a>
+  </div>
+</section>
+
+<!-- 9. GALERI -->
+<section class="scene">
+  <div class="frame-dot frame-top"></div>
+  <div class="frame-dot frame-bottom"></div>
+  <div class="container">
+    <h2 class="anim">Galeri</h2>
+    <div class="gallery">
+      <img src="../../assets/img/1.jpg">
+      <img src="../../assets/img/2.jpg">
+      <img src="../../assets/img/3.jpg">
+      <img src="../../assets/img/4.jpg">
+      <img src="../../assets/img/5.jpg">
+      <img src="../../assets/img/6.jpg">
+    </div>
+  </div>
+</section>
+
+<!-- 10. AMPL0P -->
+<section class="scene">
+  <div class="frame-dot frame-top"></div>
+  <div class="frame-dot frame-bottom"></div>
+  <div class="container card">
+    <h2 class="anim">Amplop Digital</h2>
+    <p class="anim">Bank BCA</p>
+    <p class="anim"><strong>1234567890</strong></p>
+    <p class="anim">a.n Alya Maharani</p>
+  </div>
+</section>
+
+<!-- 11. RSVP -->
+<section class="scene">
+  <div class="frame-dot frame-top"></div>
+  <div class="frame-dot frame-bottom"></div>
+  <div class="container">
+    <h2 class="anim">Konfirmasi Kehadiran</h2>
+    <form class="anim">
+      <input type="text" placeholder="Nama">
+      <div class="rsvp-btns">
+        <button type="button" class="btn rsvp-btn active" onclick="setRSVP(this)">Hadir</button>
+        <button type="button" class="btn rsvp-btn outline" onclick="setRSVP(this)">Tidak Hadir</button>
+      </div><br>
+      <textarea rows="3" placeholder="Ucapan & Doa"></textarea>
+      <button class="btn">Kirim</button>
+    </form>
+  </div>
+</section>
+
+<!-- 12. PENUTUP -->
+<section class="scene">
+  <div class="frame-dot frame-top"></div>
+  <div class="frame-dot frame-bottom"></div>
+  <div class="container">
+    <p class="anim">Merupakan suatu kehormatan dan kebahagiaan bagi kami.</p>
+    <h2 class="anim">Terima Kasih</h2>
+  </div>
+</section>
+
+<footer style="text-align:center;padding:40px 0">
+  © 2026 • Undangan Digital<br>by X-Wedlify<br>WhatsApp 085846005280
+</footer>
+
+<div id="lightbox" onclick="this.style.display='none'">
+  <img id="lightImg">
+</div>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Nama tamu
+const q=new URLSearchParams(location.search);
+const g=q.get("to");
+if(g)guest.innerText=decodeURIComponent(g.replace(/\+/g," "));
+
+// Open invite
+function openInvite(){
+  document.body.classList.remove("lock");
+  music.play();
+  window.scrollTo({top:window.innerHeight,behavior:"smooth"});
+}
+
+// Music
+function toggleMusic(){
+  music.paused?music.play():music.pause();
+}
+
+// RSVP
+function setRSVP(el){
+  document.querySelectorAll(".rsvp-btn").forEach(b=>b.classList.remove("active"));
+  el.classList.add("active");
+}
+
+// Gallery
+function openImg(el){
+  lightbox.style.display="flex";
+  lightImg.src=el.src;
+}
+
+// Countdown
+const target=new Date("2026-12-12T08:00:00").getTime();
+setInterval(()=>{
+  const now=new Date().getTime();
+  const t=target-now;
+  if(t<0)return;
+  d.innerText=Math.floor(t/(1000*60*60*24));
+  h.innerText=Math.floor((t/(1000*60*60))%24);
+  m.innerText=Math.floor((t/(1000*60))%60);
+  s.innerText=Math.floor((t/1000)%60);
+},1000);
+
+// Cinematic reveal
+gsap.utils.toArray(".scene").forEach(scene=>{
+  gsap.from(scene.querySelectorAll(".anim"),{
+    scrollTrigger:{
+      trigger:scene,
+      start:"top 70%",
+    },
+    y:40,
+    opacity:0,
+    stagger:.12,
+    duration:1
+  });
+});
+</script>
+
+</body>
+</html>
