@@ -1,1 +1,444 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Preview Undangan | X Wedlify</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* =====================
+   BASE
+===================== */
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:#eaf5ff;
+  color:#333;
+}
+
+h1,h3{
+  font-family:'Playfair Display',serif;
+  margin:0;
+}
+
+/* =====================
+   DEMO NAVBAR
+===================== */
+.nav{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(12px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 20px;
+  border-bottom:1px solid #e5e7eb;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:700;
+}
+
+.logo{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  overflow:hidden;
+  box-shadow:0 6px 16px rgba(0,0,0,.18);
+}
+
+.logo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.btn.outline{
+  background:transparent;
+  border:1.5px solid #7bb9ff;
+  color:#7bb9ff;
+  padding:7px 16px;
+  border-radius:999px;
+  font-size:13px;
+  text-decoration:none;
+}
+
+/* =====================
+   HEADER
+===================== */
+.preview-header{
+  text-align:center;
+  padding:90px 20px 40px;
+}
+
+.preview-header h1{
+  font-size:32px;
+}
+
+.preview-header p{
+  margin-top:10px;
+  font-size:14px;
+  color:#666;
+}
+
+/* =====================
+   FILTER
+===================== */
+.filter{
+  margin-top:26px;
+}
+
+.filter button{
+  background:transparent;
+  border:1px solid #ddd;
+  padding:7px 18px;
+  margin:5px;
+  border-radius:999px;
+  cursor:pointer;
+  font-size:13px;
+  color:#555;
+  transition:.25s;
+}
+
+.filter button:hover{
+  border-color:#3aaeff;
+  color:#3aaeff;
+}
+
+.filter button.active{
+  background:#3aaeff;
+  border-color:#3aaeff;
+  color:white;
+}
+
+/* =====================
+   GRID → 2 KOLOM
+===================== */
+.preview-grid{
+  max-width:900px;
+  margin:auto;
+  padding:10px 18px 70px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+/* RESPONSIVE */
+@media (max-width:600px){
+  .preview-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* =====================
+   CARD (RINGKAS)
+===================== */
+.theme-card{
+  background:white;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 14px 30px rgba(0,0,0,.08);
+  transition:.3s;
+}
+
+.theme-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 24px 50px rgba(0,0,0,.12);
+}
+
+/* =====================
+   IMAGE (TIDAK TERPOTONG)
+===================== */
+.theme-card img{
+  width:100%;
+  height:140px;
+  object-fit:contain;     /* KUNCI: GAMBAR UTUH */
+  background:#f4f7fb;
+  padding:10px;
+  display:block;
+}
+
+/* =====================
+   CONTENT
+===================== */
+.theme-card h3{
+  padding:10px 14px 0;
+  font-size:14.5px;
+  font-weight:600;
+}
+
+.tag{
+  display:inline-block;
+  margin:6px 14px;
+  padding:3px 10px;
+  border-radius:14px;
+  font-size:11px;
+  background:#ddd;
+}
+
+/* WARNA TAG */
+.tag.basic{ background:#e5e5e5; color:#333; }
+.tag.standard{ background:#4f7cff; color:white; }
+.tag.premium{ background:#c6a75e; color:white; }
+.tag.exclusive{ background:#111; color:white; }
+
+/* =====================
+   ACTIONS
+===================== */
+.actions{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 14px 14px;
+}
+
+.actions a,
+.actions button{
+  border:none;
+  background:none;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:600;
+  color:#7bb9ff;
+}
+
+.actions a:hover,
+.actions button:hover{
+  text-decoration:underline;
+}
+
+/* =====================
+   DARK MODE
+===================== */
+body.dark{
+  background:#0f172a;
+  color:#e5e7eb;
+}
+
+body.dark .preview-header p{
+  color:#94a3b8;
+}
+
+/* FILTER DARK */
+body.dark .filter button{
+  border-color:#334155;
+  color:#e5e7eb;
+}
+
+body.dark .filter button.active{
+  background:#3aaeff;
+  color:#020617;
+}
+
+/* CARD DARK */
+body.dark .theme-card{
+  background:#020617;
+}
+
+body.dark .theme-card img{
+  background:#1e293b;
+}
+
+body.dark .tag.basic{
+  background:#334155;
+  color:#e5e7eb;
+}
+
+/* =====================
+   FOOTER DEMO
+===================== */
+.demo-footer{
+  text-align:center;
+  padding:26px 16px;
+  font-size:13px;
+  color:#6b7280;
+  background:#f9fafb;
+}
+
+/* DARK MODE NAVBAR */
+body.dark .nav{
+  background:rgba(2,6,23,.85);
+  border-color:#1e293b;
+}
+
+body.dark .demo-footer{
+  background:#020617;
+  color:#94a3b8;
+}
+
+body.dark .btn.outline{
+  border-color:#7bb9ff;
+  color:#7bb9ff;
+}
+</style>
+</head>
+<body>
+  
+<!-- NAVBAR DEMO -->
+<nav class="nav">
+  <div class="brand">
+    <div class="logo">
+      <img src="../logo.jpg" alt="X Wedlify">
+    </div>
+    <span>X Wedlify</span>
+  </div>
+
+  <a href="../index.html" class="btn small outline">
+    Kembali
+  </a>
+</nav>
+
+<header class="preview-header">
+  <h1>Preview Undangan Digital</h1>
+  <p>Pilih tema sesuai paket undangan Anda</p>
+
+  <div class="filter">
+    <button class="active" data-filter="all">Semua</button>
+    <button data-filter="basic">Basic</button>
+    <button data-filter="standard">Standard</button>
+    <button data-filter="premium">Premium</button>
+    <button data-filter="exclusive">Exclusive</button>
+  </div>
+</header>
+
+<section class="preview-grid">
+
+  <!-- BASIC -->
+  <div class="theme-card basic">
+    <img src="paket-basic/basic01/basic01.jpg">
+    <h3>SOFT GOLD ELEGANT</h3>
+    <span class="tag basic">Basic</span>
+    <div class="actions">
+      <a href="paket-basic/basic01/index.html?to=Nama+Tamu" class="btn small outline">👀 Preview</a>
+      <button onclick="orderTheme('Basic','SOFT GOLD ELEGANT')">💬 Pesan</button>
+    </div>
+  </div>
+  
+  <div class="theme-card basic">
+    <img src="paket-basic/basic02/basic02.jpg">
+    <h3>SAGE GREEN ELEGANT</h3>
+    <span class="tag basic">Basic</span>
+    <div class="actions">
+      <a href="paket-basic/basic02/index.html?to=Nama+Tamu" class="btn small outline">👀 Preview</a>
+      <button onclick="orderTheme('Basic','SAGE GREEN ELEGANT')">💬 Pesan</button>
+    </div>
+  </div>
+
+  <!-- STANDARD -->
+  <div class="theme-card standard">
+    <img src="paket-standar/standar01/standar01.jpg">
+    <h3>BLUSH ROSE ELEGANT</h3>
+    <span class="tag standard">Standard</span>
+    <div class="actions">
+      <a href="paket-standar/standar01/index.html?to=Nama+Tamu" class="btn small outline">👀 Preview</a>
+      <button onclick="orderTheme('Standard','BLUSH ROSE ELEGANT')">💬 Pesan</button>
+    </div>
+  </div>
+  
+  <div class="theme-card standard">
+    <img src="paket-standar/standar02/standar02.jpg">
+    <h3>MIDNIGHT ROYALE BLUE</h3>
+    <span class="tag standard">Standard</span>
+    <div class="actions">
+      <a href="paket-standar/standar02/index.html?to=Nama+Tamu" class="btn small outline">👀 Preview</a>
+      <button onclick="orderTheme('Standard','MIDNIGHT ROYALE')">💬 Pesan</button>
+    </div>
+  </div>
+
+  <!-- PREMIUM -->
+  <div class="theme-card premium">
+    <img src="paket-premium/premium01/premium01.jpg">
+    <h3>VERDANT AURELIA</h3>
+    <span class="tag premium">Premium</span>
+    <div class="actions">
+      <a href="paket-premium/premium01/index.html?to=Nama+Tamu" class="btn small outline">👀 Preview</a>
+      <button onclick="orderTheme('Premium','VERDANT AURELIA')">💬 Pesan</button>
+    </div>
+  </div>
+
+  <div class="theme-card premium">
+    <img src="paket-premium/premium02/premium02.jpg">
+    <h3>EMERALD SAKINAH</h3>
+    <span class="tag premium">Premium</span>
+    <div class="actions">
+      <a href="paket-premium/premium02/index.html?to=Nama+Tamu" class="btn small outline">👀 Preview</a>
+      <button onclick="orderTheme('Premium','EMERALD SAKINAH')">💬 Pesan</button>
+    </div>
+  </div>
+
+  <!-- EXCLUSIVE -->
+  <div class="theme-card exclusive">
+    <img src="paket-exclusive/exclusive01/exclusive01.jpg">
+    <h3>MIDNIGHT ROSE</h3>
+    <span class="tag exclusive">Exclusive</span>
+    <div class="actions">
+      <a href="paket-exclusive/exclusive01/index.html?to=Nama+Tamu" class="btn small outline">👀 Preview</a>
+      <button onclick="orderTheme('Exclusive','MIDNIGHT ROSE')">💬 Pesan</button>
+    </div>
+  </div>
+  
+  <div class="theme-card exclusive">
+    <img src="paket-exclusive/exclusive02/exclusive02.jpg">
+    <h3>Tema Exclusive 02</h3>
+    <span class="tag exclusive">Exclusive</span>
+    <div class="actions">
+      <a href="paket-exclusive/exclusive02/index.html?to=Nama+Tamu" class="btn small outline">👀 Preview</a>
+      <button onclick="orderTheme('Exclusive','Tema Exclusive 02')">💬 Pesan</button>
+    </div>
+  </div>
+
+</section>
+
+<footer class="demo-footer">
+  © 2026 X Wedlify — Undangan Pernikahan Digital
+</footer>
+
+<script>
+// ================= DARK MODE SYNC =================
+if(localStorage.getItem("theme") === "dark"){
+  document.body.classList.add("dark");
+}
+
+const buttons = document.querySelectorAll(".filter button");
+const cards = document.querySelectorAll(".theme-card");
+
+buttons.forEach(btn=>{
+  btn.onclick = ()=>{
+    buttons.forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const filter = btn.dataset.filter;
+
+    cards.forEach(card=>{
+      card.style.display =
+        filter==="all" || card.classList.contains(filter)
+        ? "block" : "none";
+    });
+  }
+});
+
+function orderTheme(paket, tema){
+  const msg = `
+Halo X Wedlify 👋
+
+Saya tertarik dengan:
+📦 Paket: ${paket}
+🎨 Tema: ${tema}
+
+Mohon info detail & estimasi ya 🙏
+  `;
+  window.open(
+    "https://wa.me/6285846005280?text="+
+    encodeURIComponent(msg),
+    "_blank"
+  );
+}
+</script>
+</body>
+</html>
